@@ -6,8 +6,8 @@ A portfolio backend project demonstrating solid Spring Boot
 fundamentals, clean API design, pagination, validation, and JWT-based
 authentication.
 
-This project is designed to showcase practical backend skills suitable
-for junior backend roles.
+This project showcases practical backend engineering skills with a focus
+on clean architecture, security, maintainability, and production-oriented practices.
 
 ------------------------------------------------------------------------
 
@@ -20,8 +20,9 @@ for junior backend roles.
 -   Spring Security (JWT, stateless)
 -   OpenAPI / Swagger
 -   Actuator (health endpoint)
--   Maven
+-   Maven (wrapper included)
 -   Docker (optional local execution)
+-   GitHub Actions (CI pipeline)
 
 ------------------------------------------------------------------------
 
@@ -49,12 +50,12 @@ easy local evaluation.
 
 ### Demo Credentials
 
-ADMIN\
-username: admin\
+ADMIN  
+username: admin  
 password: admin123
 
-USER\
-username: user\
+USER  
+username: user  
 password: user123
 
 ### Login Endpoint
@@ -69,7 +70,7 @@ The response returns a Bearer token.
 
 Use the token in protected endpoints:
 
-Authorization: Bearer `<token>`{=html}
+Authorization: Bearer <token>
 
 ------------------------------------------------------------------------
 
@@ -101,11 +102,15 @@ GET /api/products?page=0&size=5&sort=price,desc
 ### Requirements
 
 -   Java 17
--   Maven 3.9+
+-   Maven 3.9+ (or use included Maven Wrapper)
 
 Run:
 
+Using Maven:
 mvn clean spring-boot:run
+
+Using Maven Wrapper (recommended):
+./mvnw clean spring-boot:run
 
 App runs at:
 
@@ -130,13 +135,13 @@ The primary development workflow is local Maven execution.
 
 ## 📊 API Documentation
 
-Swagger UI:\
+Swagger UI:
 /swagger-ui/index.html
 
-OpenAPI JSON:\
+OpenAPI JSON:
 /v3/api-docs
 
-Health check:\
+Health check:
 /actuator/health
 
 ------------------------------------------------------------------------
@@ -150,16 +155,22 @@ The test suite validates:
 -   JWT authentication flow
 -   Role-based authorization
 -   Protected endpoint behavior
--   Validation error handling 
+-   Validation error handling
 
 ### Running tests
 
+Using Maven:
 mvn test
+
+Using Maven Wrapper:
+./mvnw clean verify
+
+All tests are automatically executed in the GitHub Actions CI pipeline on every push.
 
 Included test classes:
 
--   AuthControllerIT -- verifies login and JWT generation
--   ProductSecurityIT -- verifies protected endpoints and role-based
+-   AuthControllerIT — verifies login and JWT generation
+-   ProductSecurityIT — verifies protected endpoints and role-based
     access
 
 These tests ensure authentication, authorization, and validation behave
@@ -198,4 +209,4 @@ as expected.
 
 This project is part of my backend portfolio to demonstrate practical
 Spring Boot development skills, structured API design, security
-fundamentals, and clean architecture principles.
+fundamentals, automated testing, and clean architecture principles.
