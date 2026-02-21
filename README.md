@@ -41,7 +41,7 @@ Key features:
 -   Role-based authorization
 -   Consistent API response wrapper
 
-![Architecture Diagram](docs/images/architecture-diagram.png/architecture-diagram.png)
+![Architecture Diagram](docs/images/architecture-diagram.png)
 
 ------------------------------------------------------------------------
 
@@ -184,15 +184,15 @@ as expected.
 
 ### Swagger UI
 
-![Swagger UI](docs/images/swagger.png/swagger.png)
+![Swagger UI](docs/images/swagger.png)
 
 ### Health Check (Actuator)
 
-![Health Check](docs/images/health.png/health.png)
+![Health Check](docs/images/health.png)
 
 ### OpenAPI JSON
 
-![OpenAPI JSON](docs/images/openapi.png/openapi.png)
+![OpenAPI JSON](docs/images/openapi.png)
 
 ------------------------------------------------------------------------
 
