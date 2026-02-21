@@ -1,0 +1,11 @@
+services:
+  rest-api-demo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: springboot-rest-api-demo
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+    restart: unless-stopped
