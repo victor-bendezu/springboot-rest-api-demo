@@ -1,5 +1,7 @@
 # Spring Boot REST API Demo (Products)
 
+[![CI](https://github.com/victor-bendezu/springboot-rest-api-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/victor-bendezu/springboot-rest-api-demo/actions/workflows/ci.yml)
+
 A portfolio backend project demonstrating solid Spring Boot
 fundamentals, clean API design, pagination, validation, and JWT-based
 authentication.
