@@ -41,6 +41,8 @@ Key features:
 -   Role-based authorization
 -   Consistent API response wrapper
 
+![Architecture Diagram](docs/images/architecture-diagram.png/architecture-diagram.png)
+
 ------------------------------------------------------------------------
 
 ## 🔐 Authentication (JWT)
@@ -182,15 +184,15 @@ as expected.
 
 ### Swagger UI
 
-![Swagger UI](docs/swagger.png)
+![Swagger UI](docs/images/swagger.png/swagger.png)
 
 ### Health Check (Actuator)
 
-![Health Check](docs/health.png)
+![Health Check](docs/images/health.png/health.png)
 
 ### OpenAPI JSON
 
-![OpenAPI JSON](docs/openapi.png)
+![OpenAPI JSON](docs/images/openapi.png/openapi.png)
 
 ------------------------------------------------------------------------
 
