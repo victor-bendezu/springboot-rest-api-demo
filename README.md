@@ -42,6 +42,9 @@ architecture principles.
 
 ## 🌍 Live Demo (Cloud Deployment)
 
+Home:
+https://springboot-rest-api-demo.onrender.com
+
 Swagger UI:
 https://springboot-rest-api-demo.onrender.com/swagger-ui/index.html
 
