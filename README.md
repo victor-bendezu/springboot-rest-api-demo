@@ -1,13 +1,26 @@
 # Spring Boot REST API Demo (Products)
 
 [![CI](https://github.com/victor-bendezu/springboot-rest-api-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/victor-bendezu/springboot-rest-api-demo/actions/workflows/ci.yml)
+[![API
+Status](https://img.shields.io/website?url=https%3A%2F%2Fspringboot-rest-api-demo.onrender.com%2Factuator%2Fhealth&label=API%20Status)](https://springboot-rest-api-demo.onrender.com/actuator/health)
+[![Render](https://img.shields.io/badge/Live-Demo-46E3B7?logo=render&logoColor=white)](https://springboot-rest-api-demo.onrender.com)
 
 A portfolio backend project demonstrating solid Spring Boot
-fundamentals, clean API design, pagination, validation, and JWT-based
-authentication.
+fundamentals, clean API design, pagination, validation, JWT-based
+authentication, automated testing, CI integration, and cloud deployment.
 
 This project showcases practical backend engineering skills with a focus
-on clean architecture, security, maintainability, and production-oriented practices.
+on clean architecture, security, maintainability, and
+production-oriented practices.
+
+------------------------------------------------------------------------
+
+## 🎯 Purpose
+
+This project is part of my backend portfolio to demonstrate practical
+Spring Boot development skills, structured API design, security
+fundamentals, automated testing, CI/CD integration, and clean
+architecture principles.
 
 ------------------------------------------------------------------------
 
@@ -21,8 +34,22 @@ on clean architecture, security, maintainability, and production-oriented practi
 -   OpenAPI / Swagger
 -   Actuator (health endpoint)
 -   Maven (wrapper included)
--   Docker (optional local execution)
+-   Docker (multi-stage build)
 -   GitHub Actions (CI pipeline)
+-   Render (cloud deployment)
+
+------------------------------------------------------------------------
+
+## 🌍 Live Demo (Cloud Deployment)
+
+Swagger UI:
+https://springboot-rest-api-demo.onrender.com/swagger-ui/index.html
+
+Health Check:
+https://springboot-rest-api-demo.onrender.com/actuator/health
+
+Note: Free instances spin down after inactivity, so the first request
+may take a few seconds to respond.
 
 ------------------------------------------------------------------------
 
@@ -41,77 +68,85 @@ Key features:
 -   Role-based authorization
 -   Consistent API response wrapper
 
-![Architecture Diagram](docs/images/architecture-diagram.png)
-
 ------------------------------------------------------------------------
 
-## 🔐 Authentication (JWT)
+## 🔐 Authentication & Protected Endpoints (JWT)
 
-The project includes JWT-based authentication using in-memory users for
-easy local evaluation.
+The API uses stateless JWT authentication with in-memory demo users for
+evaluation purposes.
 
 ### Demo Credentials
 
-ADMIN  
-username: admin  
+ADMIN\
+username: admin\
 password: admin123
 
-USER  
-username: user  
+USER\
+username: user\
 password: user123
 
-### Login Endpoint
+### How to Test
 
-POST /api/auth/login
+**1️⃣ Login**
 
-Example body:
+POST `/api/auth/login`
+
+Example:
 
 { "username": "admin", "password": "admin123" }
 
-The response returns a Bearer token.
+The response returns a JWT token.
 
-Use the token in protected endpoints:
+**2️⃣ Use the token**
 
-Authorization: Bearer <token>
+Include in header:
+
+Authorization: Bearer `<your_token>`{=html}
+
+**3️⃣ Access protected endpoints (ADMIN only)**
+
+-   POST `/api/products`
+-   DELETE `/api/products/{id}`
+
+Example body:
+
+{ "sku": "SKU-1001", "name": "Demo Product", "price": 100, "categoryId":
+1, "active": true }
+
+Note: The demo uses an in-memory H2 database. Data resets when the
+application restarts.
 
 ------------------------------------------------------------------------
 
-## 📦 API Endpoints
+## 📦 Public Endpoints
 
-### Public Endpoints
-
--   GET /api/products
--   GET /api/categories
--   POST /api/auth/login
--   /swagger-ui/index.html
--   /actuator/health
-
-### Protected (ADMIN Required)
-
--   POST /api/products
--   DELETE /api/products/{id}
+-   GET `/api/products`
+-   GET `/api/categories`
+-   POST `/api/auth/login`
+-   `/swagger-ui/index.html`
+-   `/actuator/health`
 
 ------------------------------------------------------------------------
 
 ## 📄 Pagination Example
 
-GET /api/products?page=0&size=5&sort=price,desc
+GET `/api/products?page=0&size=5&sort=price,desc`
 
 ------------------------------------------------------------------------
 
 ## ▶ Quick Start (Local)
 
-### Requirements
+Requirements:
 
 -   Java 17
 -   Maven 3.9+ (or use included Maven Wrapper)
 
 Run:
 
-Using Maven:
 mvn clean spring-boot:run
 
-Using Maven Wrapper (recommended):
+or
+
 ./mvnw clean spring-boot:run
 
 App runs at:
@@ -120,9 +155,7 @@ http://localhost:8080
 
 ------------------------------------------------------------------------
 
-## 🐳 Quick Start (Docker - Optional)
-
-Build and run:
+## 🐳 Quick Start (Docker)
 
 docker compose up --build
 
@@ -130,53 +163,54 @@ Stop:
 
 docker compose down
 
-Note: Docker support is included for portability and learning purposes.
-The primary development workflow is local Maven execution.
-
 ------------------------------------------------------------------------
 
 ## 📊 API Documentation
 
-Swagger UI:
-/swagger-ui/index.html
+Swagger UI: /swagger-ui/index.html
 
-OpenAPI JSON:
-/v3/api-docs
+OpenAPI JSON: /v3/api-docs
 
-Health check:
-/actuator/health
+Health check: /actuator/health
 
 ------------------------------------------------------------------------
 
 ## 🧪 Testing
 
-Basic integration tests are included using Spring Boot Test and MockMvc.
+Integration tests are included using Spring Boot Test and MockMvc.
 
-The test suite validates:
+Validated areas:
 
 -   JWT authentication flow
 -   Role-based authorization
 -   Protected endpoint behavior
 -   Validation error handling
 
-### Running tests
+Run tests:
 
-Using Maven:
 mvn test
 
-Using Maven Wrapper:
+or
+
 ./mvnw clean verify
 
-All tests are automatically executed in the GitHub Actions CI pipeline on every push.
+Tests execute automatically via GitHub Actions on every push.
 
-Included test classes:
+------------------------------------------------------------------------
 
--   AuthControllerIT — verifies login and JWT generation
--   ProductSecurityIT — verifies protected endpoints and role-based
-    access
+## 🚀 Deployment Overview
 
-These tests ensure authentication, authorization, and validation behave
-as expected.
+The project is containerized using a multi-stage Docker build:
+
+-   Maven build stage
+-   Lightweight JRE runtime stage
+-   Environment-based port configuration (`server.port=${PORT:8080}`)
+-   HTTPS termination handled by Render
+-   Health monitoring via Actuator
+-   CI ensures successful builds before deployment
+
+In production, H2 would be replaced by a persistent database
+(PostgreSQL/MySQL) with externalized configuration.
 
 ------------------------------------------------------------------------
 
@@ -203,12 +237,4 @@ as expected.
 -   Roles stored as JWT claims
 -   Custom JWT filter extending OncePerRequestFilter
 -   Clean separation of responsibilities
--   Validation errors returned in consistent JSON format
-
-------------------------------------------------------------------------
-
-## 🎯 Purpose
-
-This project is part of my backend portfolio to demonstrate practical
-Spring Boot development skills, structured API design, security
-fundamentals, automated testing, and clean architecture principles.
+-   Consistent validation error responses
