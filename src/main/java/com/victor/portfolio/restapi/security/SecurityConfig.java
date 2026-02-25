@@ -52,7 +52,8 @@ public class SecurityConfig {
         http.authorizeHttpRequests(auth -> auth
                 // public
                 .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                .requestMatchers("/swagger-ui/**").permitAll()
+                .requestMatchers("/v3/api-docs/**").permitAll()
                 .requestMatchers("/actuator/health").permitAll()
 
                 // public read
@@ -63,6 +64,16 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/api/products/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/api/products/**").hasRole("ADMIN")
 
+                // Public endpoints exposed intentionally for live demo usability.
+                // This allows the root landing page ("/") to load without authentication
+                // while keeping all business endpoints protected.
+                .requestMatchers(
+                        "/",
+                        "/index.html",
+                        "/css/**",
+                        "/js/**",
+                        "/images/**"
+                ).permitAll()
                 .anyRequest().authenticated()
         );
 
