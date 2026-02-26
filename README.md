@@ -70,6 +70,8 @@ Key features:
 -   Role-based authorization
 -   Consistent API response wrapper
 
+![Diagram](docs/images/architecture-diagram.png)
+
 ------------------------------------------------------------------------
 
 ## 🔐 Authentication & Protected Endpoints (JWT)
@@ -247,7 +249,7 @@ In production, H2 would be replaced by a persistent database
 
 A ready-to-use Postman collection is available in:
 
-docs/postman/
+docs/postman/springboot-rest-api-demo.postman_collection.json
 
 How to use:
 
@@ -265,16 +267,25 @@ subsequent requests.
 
 ## 🧩 Project Structure
 
-src/main/java\
-├── controller\
-├── service\
-├── repository\
-├── security\
-├── dto\
-└── exception
+src/main/java/com/victor/portfolio/restapi
+├── auth
+│   ├── dto
+│   └── AuthController.java
+├── common
+├── config
+├── exception
+├── product
+│   ├── controller
+│   ├── dao
+│   ├── domain
+│   ├── dto
+│   ├── repository
+│   └── service
+└── security
 
-This layered structure ensures clear separation of concerns and
-maintainability.
+This structure keeps responsibilities separated by feature (auth, product)
+and by layer (controller/service/repository), making the project easier
+to navigate and maintain.
 
 ------------------------------------------------------------------------
 

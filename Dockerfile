@@ -2,11 +2,11 @@
 FROM maven:3.9.9-eclipse-temurin-17 AS build
 WORKDIR /app
 
-# Copiamos primero pom para cache de dependencias
+# Copy pom.xml first to leverage dependency caching
 COPY pom.xml .
 RUN mvn -q -e -DskipTests dependency:go-offline
 
-# Copiamos el código y compilamos
+# Copy source code and build
 COPY src ./src
 RUN mvn -q -DskipTests clean package
 
@@ -14,12 +14,12 @@ RUN mvn -q -DskipTests clean package
 FROM eclipse-temurin:17-jre
 WORKDIR /app
 
-# Copiamos el jar generado (ajusta si tu JAR se llama distinto)
+# Copy the generated jar (adjust if your JAR name differs)
 COPY --from=build /app/target/*.jar app.jar
 
 EXPOSE 8080
 
-# Opcional: configurar timezone (por si quieres)
+# Optional: set timezone if needed
 # ENV TZ=America/Vancouver
 
 ENTRYPOINT ["java","-jar","app.jar"]

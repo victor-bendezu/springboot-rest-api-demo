@@ -51,19 +51,19 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(auth -> auth
                 // public
-                .requestMatchers("/api/auth/**", "/api/v1/auth/**").permitAll()
+                .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/swagger-ui.html").permitAll()
                 .requestMatchers("/swagger-ui/**").permitAll()
                 .requestMatchers("/v3/api-docs/**").permitAll()
                 .requestMatchers("/actuator/health").permitAll()
 
                 // public read
-                .requestMatchers(HttpMethod.GET, "/api/products/**", "/api/v1/products/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/categories/**", "/api/v1/categories/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/products/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/categories/**").permitAll()
 
                 // write requires ADMIN
-                .requestMatchers(HttpMethod.POST, "/api/products/**", "/api/v1/products/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "/api/products/**", "/api/v1/products/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/api/products/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/api/products/**").hasRole("ADMIN")
 
                 // Public endpoints exposed intentionally for live demo usability.
                 // This allows the root landing page ("/") to load without authentication

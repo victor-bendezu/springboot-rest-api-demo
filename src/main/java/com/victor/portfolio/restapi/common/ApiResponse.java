@@ -9,7 +9,7 @@ import lombok.*;
 @Builder
 public class ApiResponse<T> {
 
-    private int code;        // 0 = OK, 1 = ERROR (simple y claro para portafolio)
+    private int code;
     private String message;
     private T data;
 
