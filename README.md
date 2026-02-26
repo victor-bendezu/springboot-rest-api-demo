@@ -267,6 +267,7 @@ subsequent requests.
 
 ## 🧩 Project Structure
 
+```text
 src/main/java/com/victor/portfolio/restapi
 ├── auth
 │   ├── dto
@@ -281,8 +282,16 @@ src/main/java/com/victor/portfolio/restapi
 │   ├── dto
 │   ├── repository
 │   └── service
-└── security
+├── security
+└── SpringbootRestApiDemoApplication.java
 
+src/main/resources
+├── static
+├── templates
+├── application.yml
+├── application-dev.yml
+└── application-prod.yml
+```
 This structure keeps responsibilities separated by feature (auth, product)
 and by layer (controller/service/repository), making the project easier
 to navigate and maintain.
