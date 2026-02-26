@@ -42,8 +42,7 @@ architecture principles.
 
 ## 🌍 Live Demo (Cloud Deployment)
 
-Home:
-https://springboot-rest-api-demo.onrender.com
+Home: https://springboot-rest-api-demo.onrender.com
 
 Swagger UI:
 https://springboot-rest-api-demo.onrender.com/swagger-ui/index.html
@@ -241,3 +240,56 @@ In production, H2 would be replaced by a persistent database
 -   Custom JWT filter extending OncePerRequestFilter
 -   Clean separation of responsibilities
 -   Consistent validation error responses
+
+------------------------------------------------------------------------
+
+## 📬 Postman Collection
+
+A ready-to-use Postman collection is available in:
+
+docs/postman/
+
+How to use:
+
+1.  Import the collection into Postman.
+2.  Create an environment variable: baseUrl = http://localhost:8080
+3.  Run the Auth - Login request to automatically store:
+    -   jwtToken
+    -   tokenType
+4.  Use protected endpoints (POST / DELETE) with the saved token.
+
+The login script automatically saves the JWT to the environment for
+subsequent requests.
+
+------------------------------------------------------------------------
+
+## 🧩 Project Structure
+
+src/main/java\
+├── controller\
+├── service\
+├── repository\
+├── security\
+├── dto\
+└── exception
+
+This layered structure ensures clear separation of concerns and
+maintainability.
+
+------------------------------------------------------------------------
+
+## ⚙ Environment Configuration
+
+The application supports profile-based configuration:
+
+-   application.yml
+-   application-dev.yml
+-   application-prod.yml
+
+The server port is configurable via:
+
+server.port=\${PORT:8080}
+
+This enables flexible local and cloud deployment configuration.
+
+------------------------------------------------------------------------
