@@ -14,7 +14,7 @@ import lombok.Setter;
 public class ProductCategoryDto {
 
     private Long id;
-    private String code;     // <-- IMPORTANTE: esto lo usa el ServiceImpl
+    private String code;     // used by the service layer
     private String name;
     private Boolean active;
 }

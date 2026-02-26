@@ -14,7 +14,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,7 +29,7 @@ public class ProductServiceImpl implements ProductService {
         return categoryRepository.findAll().stream()
                 .map(c -> ProductCategoryDto.builder()
                         .id(c.getId())
-                        .code(c.getCode())      // <-- ya existe en DTO
+                        .code(c.getCode())      // already present in the DTO
                         .name(c.getName())
                         .active(c.getActive())
                         .build())
@@ -66,8 +65,7 @@ public class ProductServiceImpl implements ProductService {
         Product entity = Product.builder()
                 .sku(request.getSku())
                 .name(request.getName())
-                // Entity: BigDecimal | Request: (probablemente) Double -> convertimos seguro
-                .price(toBigDecimal(request.getPrice()))
+                .price(request.getPrice())
                 .active(request.getActive())
                 .category(category)
                 .build();
@@ -89,19 +87,10 @@ public class ProductServiceImpl implements ProductService {
                 .id(p.getId())
                 .sku(p.getSku())
                 .name(p.getName())
-                // Entity: BigDecimal | Response: (probablemente) Double -> convertimos seguro
-                .price(toDouble(p.getPrice()))
+                .price(p.getPrice())
                 .active(p.getActive())
                 .categoryId(p.getCategory() != null ? p.getCategory().getId() : null)
                 .categoryName(p.getCategory() != null ? p.getCategory().getName() : null)
                 .build();
-    }
-
-    private BigDecimal toBigDecimal(Double value) {
-        return value == null ? null : BigDecimal.valueOf(value);
-    }
-
-    private Double toDouble(BigDecimal value) {
-        return value == null ? null : value.doubleValue();
     }
 }

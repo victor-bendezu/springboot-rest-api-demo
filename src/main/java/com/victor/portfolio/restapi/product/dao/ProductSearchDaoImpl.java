@@ -53,7 +53,7 @@ public class ProductSearchDaoImpl implements ProductSearchDao {
                 .id(rs.getLong("product_id"))
                 .sku(rs.getString("sku"))
                 .name(rs.getString("product_name"))
-                .price(rs.getBigDecimal("price") != null ? rs.getBigDecimal("price").doubleValue() : null)
+                .price(rs.getBigDecimal("price") != null ? rs.getBigDecimal("price") : null)
                 .active(rs.getBoolean("active"))
                 .categoryId(rs.getLong("category_id"))
                 .categoryCode(rs.getString("category_code"))

@@ -104,7 +104,7 @@ The response returns a JWT token.
 
 Include in header:
 
-Authorization: Bearer `<your_token>`{=html}
+Authorization: Bearer `<your_token>`
 
 **3️⃣ Access protected endpoints (ADMIN only)**
 

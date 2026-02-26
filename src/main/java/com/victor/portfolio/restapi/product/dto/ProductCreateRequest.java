@@ -3,6 +3,8 @@ package com.victor.portfolio.restapi.product.dto;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,7 +22,7 @@ public class ProductCreateRequest {
 
     @NotNull(message = "Price is required.")
     @DecimalMin(value = "0.0", inclusive = true, message = "Price must be >= 0.")
-    private Double price;
+    private BigDecimal price;
 
     @NotNull(message = "Category is required.")
     private Long categoryId;
