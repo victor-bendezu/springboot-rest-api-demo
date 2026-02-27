@@ -5,13 +5,13 @@
 Status](https://img.shields.io/website?url=https%3A%2F%2Fspringboot-rest-api-demo.onrender.com%2Factuator%2Fhealth&label=API%20Status)](https://springboot-rest-api-demo.onrender.com/actuator/health)
 [![Render](https://img.shields.io/badge/Live-Demo-46E3B7?logo=render&logoColor=white)](https://springboot-rest-api-demo.onrender.com)
 
-A portfolio backend project demonstrating solid Spring Boot
-fundamentals, clean API design, pagination, validation, JWT-based
-authentication, automated testing, CI integration, and cloud deployment.
+A portfolio backend project demonstrating practical Spring Boot
+fundamentals including clean API design, pagination, validation,
+JWT-based authentication, basic automated testing, and cloud deployment.
 
 This project showcases practical backend engineering skills with a focus
 on clean architecture, security, maintainability, and
-production-oriented practices.
+industry-aligned best practices suitable for a portfolio demo.
 
 ------------------------------------------------------------------------
 
@@ -97,7 +97,9 @@ POST `/api/auth/login`
 
 Example:
 
+```json
 { "username": "admin", "password": "admin123" }
+```
 
 The response returns a JWT token.
 
@@ -105,7 +107,7 @@ The response returns a JWT token.
 
 Include in header:
 
-Authorization: Bearer `<your_token>`
+Authorization: Bearer <JWT_TOKEN>
 
 **3️⃣ Access protected endpoints (ADMIN only)**
 
@@ -114,8 +116,9 @@ Authorization: Bearer `<your_token>`
 
 Example body:
 
-{ "sku": "SKU-1001", "name": "Demo Product", "price": 100, "categoryId":
-1, "active": true }
+```json
+{ "sku": "SKU-1001", "name": "Demo Product", "price": 100, "categoryId": 1, "active": true }
+```
 
 Note: The demo uses an in-memory H2 database. Data resets when the
 application restarts.
@@ -138,7 +141,7 @@ GET `/api/products?page=0&size=5&sort=price,desc`
 
 ------------------------------------------------------------------------
 
-## ▶ Quick Start (Local)
+## 🚀 Quick Start (Local)
 
 Requirements:
 
@@ -147,11 +150,11 @@ Requirements:
 
 Run:
 
-mvn clean spring-boot:run
+`mvn clean spring-boot:run`
 
 or
 
-./mvnw clean spring-boot:run
+`./mvnw clean spring-boot:run`
 
 App runs at:
 
@@ -159,13 +162,13 @@ http://localhost:8080
 
 ------------------------------------------------------------------------
 
-## 🐳 Quick Start (Docker)
+## ⚡ Quick Start (Docker)
 
-docker compose up --build
+`docker compose up --build`
 
 Stop:
 
-docker compose down
+`docker compose down`
 
 ------------------------------------------------------------------------
 
@@ -192,17 +195,17 @@ Validated areas:
 
 Run tests:
 
-mvn test
+`mvn test`
 
 or
 
-./mvnw clean verify
+`./mvnw clean verify`
 
 Tests execute automatically via GitHub Actions on every push.
 
 ------------------------------------------------------------------------
 
-## 🚀 Deployment Overview
+## 🛠 Deployment Overview
 
 The project is containerized using a multi-stage Docker build:
 
@@ -211,7 +214,7 @@ The project is containerized using a multi-stage Docker build:
 -   Environment-based port configuration (`server.port=${PORT:8080}`)
 -   HTTPS termination handled by Render
 -   Health monitoring via Actuator
--   CI ensures successful builds before deployment
+-   CI validates builds and tests on every push
 
 In production, H2 would be replaced by a persistent database
 (PostgreSQL/MySQL) with externalized configuration.
@@ -249,7 +252,7 @@ In production, H2 would be replaced by a persistent database
 
 A ready-to-use Postman collection is available in:
 
-docs/postman/springboot-rest-api-demo.postman_collection.json
+`docs/postman/springboot-rest-api-demo.postman_collection.json`
 
 How to use:
 
@@ -308,7 +311,7 @@ The application supports profile-based configuration:
 
 The server port is configurable via:
 
-server.port=\${PORT:8080}
+`server.port=${PORT:8080}`
 
 This enables flexible local and cloud deployment configuration.
 
