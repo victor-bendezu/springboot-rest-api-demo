@@ -188,10 +188,12 @@ Integration tests are included using Spring Boot Test and MockMvc.
 
 Validated areas:
 
--   JWT authentication flow
--   Role-based authorization
--   Protected endpoint behavior
--   Validation error handling
+- JWT authentication flow (`AuthControllerIT`)
+- CRUD read behavior (`ProductReadIT`)
+- CRUD write behavior (`ProductWriteIT`)
+- Role-based authorization & protected endpoints (`ProductSecurityIT`)
+- Pagination behavior (`ProductPaginationIT`)
+- Validation error handling (`ProductValidationIT`)
 
 Run tests:
 
@@ -314,5 +316,20 @@ The server port is configurable via:
 `server.port=${PORT:8080}`
 
 This enables flexible local and cloud deployment configuration.
+
+------------------------------------------------------------------------
+
+## 🔐 Security Configuration
+
+The JWT secret must be provided via environment variable.
+
+Example:
+
+`export JWT_SECRET=your_super_secure_secret`
+
+In production, define it in your hosting platform environment variables section.
+
+For security reasons, the secret is never hardcoded in the source code.
+For local Docker usage, copy `.env.example` to `.env` and define your own secure value.
 
 ------------------------------------------------------------------------
