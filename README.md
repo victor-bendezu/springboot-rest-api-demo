@@ -1,8 +1,6 @@
 # Spring Boot REST API Demo (Products)
 
 [![CI](https://github.com/victor-bendezu/springboot-rest-api-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/victor-bendezu/springboot-rest-api-demo/actions/workflows/ci.yml)
-[![API
-Status](https://img.shields.io/website?url=https%3A%2F%2Fspringboot-rest-api-demo.onrender.com%2Factuator%2Fhealth&label=API%20Status)](https://springboot-rest-api-demo.onrender.com/actuator/health)
 [![Render](https://img.shields.io/badge/Live-Demo-46E3B7?logo=render&logoColor=white)](https://springboot-rest-api-demo.onrender.com)
 
 A portfolio backend project demonstrating practical Spring Boot
